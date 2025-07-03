@@ -21,9 +21,6 @@ jobs:
       - name: Obtener IP pública del runner
         id: ip
         uses: haythem/public-ip@v1.3
-
-      - name: Mostrar IP
-        run: echo "Accede a: http://${{ steps.ip.outputs.ipv4 }}:${{ steps.nginx.outputs.port }}/"
         
       - name: Abrir sesión tmate
         run: tmate -F
