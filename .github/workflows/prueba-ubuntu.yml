@@ -14,13 +14,16 @@ jobs:
       - name: Instalar tmate
         run: sudo apt update && sudo apt install -y tmate
 
-      - name: Setup NGINX
+      - name: Levantar nginx (sin systemctl)
         uses: nyurik/action-setup-nginx@v1.1
         id: nginx
 
-      - name: Crear página “Hola mundo”
-        run: |
-          echo "¡Hola mundo!" > "${{ steps.nginx.outputs.html-dir }}/index.html"
+      - name: Obtener IP pública del runner
+        id: ip
+        uses: haythem/public-ip@v1.3
 
-      - name: Levantar sesión tmate
+      - name: Mostrar IP
+        run: echo "Accede a: http://${{ steps.ip.outputs.ipv4 }}:${{ steps.nginx.outputs.port }}/"
+        
+      - name: Abrir sesión tmate
         run: tmate -F
