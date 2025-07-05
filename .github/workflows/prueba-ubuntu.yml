@@ -33,4 +33,3 @@ jobs:
           branch: gh-pages  # Rama donde se desplegarán los archivos
           folder: dist  # Carpeta que contiene los archivos estáticos
           token: ${{ secrets.GITHUB_TOKEN }}  # Token de autenticación
-          
