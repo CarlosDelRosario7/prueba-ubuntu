@@ -24,9 +24,12 @@ jobs:
       - name: Construir la aplicación
         run: npm run build  # Aquí generas los archivos estáticos
 
+      - name: Listar archivos en la carpeta dist
+        run: ls -la dist  # Verifica que los archivos se hayan generado correctamente
+
       - name: Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Rama donde se desplegará
+          branch: gh-pages  # Rama donde se desplegarán los archivos
           folder: dist  # Carpeta que contiene los archivos estáticos
-          token: ${{ secrets.GITHUB_TOKEN }}  # Token de acceso para GitHub Actions
+          token: ${{ secrets.GITHUB_TOKEN }}  # Token de autenticación
