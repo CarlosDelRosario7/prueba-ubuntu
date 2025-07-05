@@ -3,6 +3,8 @@ name: Prueba-Ubuntu
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -11,16 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Instalar tmate
-        run: sudo apt update && sudo apt install -y tmate
+      - name: Instalar node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Levantar nginx (sin systemctl)
-        uses: nyurik/action-setup-nginx@v1.1
-        id: nginx
+      - name: Listar archivos
+        run: ls -la
 
-      - name: Obtener IP pública del runner
-        id: ip
-        uses: haythem/public-ip@v1.3
-        
-      - name: Abrir sesión tmate
-        run: tmate -F
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar app
+        run: npm run dev
