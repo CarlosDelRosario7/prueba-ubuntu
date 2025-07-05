@@ -17,7 +17,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'  # Habilita el caché de npm para acelerar las instalaciones
 
       - name: mostrando ip
         run: curl ifconfig.me  # Muestra la IP pública del runner
