@@ -1,0 +1,27 @@
+name: Prueba-Ubuntu
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'  # Habilita el caché de npm para acelerar las instalaciones
+
+      - name: mostrando ip
+        run: curl ifconfig.me  # Muestra la IP pública del runner
+
+      - run: cd servidor && npm ci  # Instala las dependencias del servidor
+      - run: npm run dev --prefix servidor &  # Inicia el servidor en segundo plano
+
