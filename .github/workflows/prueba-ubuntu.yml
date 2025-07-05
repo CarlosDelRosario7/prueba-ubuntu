@@ -18,11 +18,14 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Listar archivos
-        run: ls -la
-
       - name: Instalar dependencias
         run: npm install
 
-      - name: Ejecutar app
-        run: npm run dev
+      - name: Construir la aplicación
+        run: npm run build  # Aquí generas los archivos estáticos
+
+      - name: Desplegar en GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Rama donde se desplegará
+          folder: dist  # Carpeta que contiene los archivos estáticos
