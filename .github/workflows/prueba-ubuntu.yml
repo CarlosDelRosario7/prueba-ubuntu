@@ -27,17 +27,10 @@ jobs:
       - name: Listar archivos en la carpeta dist
         run: ls -la dist  # Verifica que los archivos se hayan generado correctamente
 
-      # Limpiar rama gh-pages (si ya existe algo)
-      - name: Limpiar rama gh-pages
-        run: |
-          git fetch origin gh-pages || git checkout --orphan gh-pages
-          git rm -rf .
-          git commit -m "Limpiar gh-pages"
-          git push origin gh-pages --force
-
       - name: Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # Rama donde se desplegarán los archivos
           folder: dist  # Carpeta que contiene los archivos estáticos
           token: ${{ secrets.GITHUB_TOKEN }}  # Token de autenticación
+          
