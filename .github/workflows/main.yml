@@ -24,4 +24,3 @@ jobs:
 
       - run: cd servidor && npm ci  # Instala las dependencias del servidor
       - run: npm run dev --prefix servidor &  # Inicia el servidor en segundo plano
-
