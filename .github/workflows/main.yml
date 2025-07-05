@@ -22,4 +22,5 @@ jobs:
         run: curl ifconfig.me  # Muestra la IP pública del runner
 
       - run: cd servidor && npm ci  # Instala las dependencias del servidor
+      - run: npm i nodemon -g  # Instala nodemon globalmente
       - run: npm run dev # Inicia el servidor
